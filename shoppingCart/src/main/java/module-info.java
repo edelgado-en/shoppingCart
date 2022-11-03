@@ -6,6 +6,6 @@ module com.cop4331.shoppingcart {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.cop4331.shoppingcart to javafx.fxml;
-    exports com.cop4331.shoppingcart;
+    opens main to javafx.fxml;
+    exports main;
 }

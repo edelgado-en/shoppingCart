@@ -80,7 +80,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.cop4331.shoppingcart/com.cop4331.shoppingcart.HelloApplication</mainClass>
+                            <mainClass>com.cop4331.shoppingcart/main.ShoppingCartApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
