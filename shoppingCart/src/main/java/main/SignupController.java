@@ -1,5 +1,6 @@
 package main;
 
+import dao.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import services.UserService;
 
 import java.io.IOException;
 
@@ -16,6 +18,12 @@ public class SignupController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    private UserService userService;
+
+    public SignupController(UserService userService) {
+        this.userService = userService;
+    }
 
     @FXML
     private TextField username;
@@ -26,9 +34,10 @@ public class SignupController {
     @FXML
     void backToLogin(ActionEvent event) {
         try {
-            root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+            fxmlLoader.setController(new LoginController(new UserService(new UserDAO())));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.show();
 
@@ -42,11 +51,11 @@ public class SignupController {
         System.out.println("Username: " + username.getText());
         System.out.println("Password: " + password.getText());
 
-        //save user object in json format to the file system
-        //use the username as the file name
-        //use the password as the value
-
-
+        // if there is no user with the same username and password
+        if (userService.loadUser(username.getText(), password.getText()) == null) {
+            // save the user
+            userService.saveUser(username.getText(), password.getText());
+        }
 
     }
 
