@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,5 +25,7 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label layoutX="220.0" layoutY="304.0" text="Don't have an account?" />
+      <Hyperlink layoutX="350.0" layoutY="301.0" onAction="#signup" text="sign up" />
    </children>
 </AnchorPane>

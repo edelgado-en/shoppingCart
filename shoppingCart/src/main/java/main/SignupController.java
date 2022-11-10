@@ -11,28 +11,22 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginController {
+public class SignupController {
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
     @FXML
-    private TextField password;
-
-    @FXML
     private TextField username;
 
     @FXML
-    void signin(ActionEvent event) {
-        System.out.println("Username: " + username.getText());
-        System.out.println("Password: " + password.getText());
-    }
+    private TextField password;
 
     @FXML
-    void signup(ActionEvent event) {
+    void backToLogin(ActionEvent event) {
         try {
-            root = FXMLLoader.load(getClass().getResource("signup.fxml"));
+            root = FXMLLoader.load(getClass().getResource("login.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -41,6 +35,19 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void signUp(ActionEvent event) {
+        System.out.println("Username: " + username.getText());
+        System.out.println("Password: " + password.getText());
+
+        //save user object in json format to the file system
+        //use the username as the file name
+        //use the password as the value
+
+
+
     }
 
 }

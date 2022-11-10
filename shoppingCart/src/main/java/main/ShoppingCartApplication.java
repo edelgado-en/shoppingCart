@@ -14,6 +14,7 @@ public class ShoppingCartApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Shopping Cart App");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
