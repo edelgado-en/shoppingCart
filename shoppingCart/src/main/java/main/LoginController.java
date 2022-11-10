@@ -1,5 +1,6 @@
 package main;
 
+import dao.ProductDAO;
 import dao.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import services.ProductService;
 import services.UserService;
 
 import java.io.IOException;
@@ -39,9 +41,11 @@ public class LoginController {
     void signin(ActionEvent event) throws IOException {
         //check if user exists
         if (userService.loadUser(username.getText(), password.getText()) != null) {
-            root = FXMLLoader.load(getClass().getResource("productList.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("productList.fxml"));
+            fxmlLoader.setController(new ProductListController(new ProductService(new ProductDAO())));
+
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.show();
 

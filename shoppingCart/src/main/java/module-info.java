@@ -7,5 +7,7 @@ module com.cop4331.shoppingcart {
     requires org.kordamp.bootstrapfx.core;
 
     opens main to javafx.fxml;
+    opens models to javafx.base;
+
     exports main;
 }
