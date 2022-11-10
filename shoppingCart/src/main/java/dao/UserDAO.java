@@ -5,6 +5,12 @@ import models.User;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * UserDAO is a class that implements the PersistenceService interface.
+ * This class is responsible for saving and loading users to the file system.
+ *
+ * @author Enrique Delgado
+ */
 public class UserDAO implements PersistenceService<User> {
 
     @Override
@@ -20,7 +26,8 @@ public class UserDAO implements PersistenceService<User> {
             writer.close();
 
         } catch (Exception e) {
-
+            //TODO: handle exception better
+            e.printStackTrace();
         }
     }
 

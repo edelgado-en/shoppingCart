@@ -13,6 +13,11 @@ import services.UserService;
 
 import java.io.IOException;
 
+/**
+ * Signup Controller class in charge of creating new users.
+ *
+ * @author Enrique Delgado
+ */
 public class SignupController {
 
     private Stage stage;
@@ -31,32 +36,34 @@ public class SignupController {
     @FXML
     private TextField password;
 
+    /**
+     * Redirects the user to the login screen.
+     * @param event
+     */
     @FXML
-    void backToLogin(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
-            fxmlLoader.setController(new LoginController(new UserService(new UserDAO())));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(fxmlLoader.load());
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void backToLogin(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+        fxmlLoader.setController(new LoginController(new UserService(new UserDAO())));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     void signUp(ActionEvent event) {
-        System.out.println("Username: " + username.getText());
-        System.out.println("Password: " + password.getText());
-
         // if there is no user with the same username and password
         if (userService.loadUser(username.getText(), password.getText()) == null) {
             // save the user
             userService.saveUser(username.getText(), password.getText());
-        }
 
+            //TODO: redirect the user to the product list view
+
+
+        } else {
+            // show error message in the signup screen. TODO: Add a label to fxml to show error messages
+            System.out.println("User already exists");
+        }
     }
 
 }

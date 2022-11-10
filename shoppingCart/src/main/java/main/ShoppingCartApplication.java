@@ -9,7 +9,12 @@ import services.UserService;
 
 import java.io.IOException;
 
+/**
+ * Main class in charge of starting the application.. The default view is the login view.
+ * @author Enrique Delgado
+ */
 public class ShoppingCartApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("login.fxml"));

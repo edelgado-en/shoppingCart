@@ -13,6 +13,10 @@ import services.UserService;
 
 import java.io.IOException;
 
+/**
+ * LoginController class in charge of authenticating users.
+ * @author Enrique Delgado
+ */
 public class LoginController {
 
     private Stage stage;
@@ -32,42 +36,28 @@ public class LoginController {
     }
 
     @FXML
-    void signin(ActionEvent event) {
-        System.out.println("Username: " + username.getText());
-        System.out.println("Password: " + password.getText());
-
+    void signin(ActionEvent event) throws IOException {
         //check if user exists
         if (userService.loadUser(username.getText(), password.getText()) != null) {
-            try {
-                root = FXMLLoader.load(getClass().getResource("productList.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+            root = FXMLLoader.load(getClass().getResource("productList.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         } else {
             //show error message in the login screen. TODO: Add a label to fxml to show error messages
             System.out.println("User does not exist");
         }
-
     }
 
     @FXML
-    void signup(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
-            fxmlLoader.setController(new SignupController(new UserService(new UserDAO())));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(fxmlLoader.load());
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void signup(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
+        fxmlLoader.setController(new SignupController(new UserService(new UserDAO())));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
     }
-
 }

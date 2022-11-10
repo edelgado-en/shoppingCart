@@ -3,6 +3,11 @@ package services;
 import dao.UserDAO;
 import models.User;
 
+/**
+ * User service class that provides the business logic for saving and loading users.
+ *
+ * @author Enrique Delgado
+ */
 public class UserService {
 
     private UserDAO userDAO;
