@@ -21,4 +21,33 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof User)) {
+            return false;
+        }
+
+        User user = (User) obj;
+
+        return username.equals(user.getUsername()) && password.equals(user.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return username.hashCode() + password.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "(" + username + ", " + password + ")";
+    }
 }

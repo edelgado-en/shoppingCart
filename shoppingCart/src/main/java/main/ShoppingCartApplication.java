@@ -13,7 +13,8 @@ public class ShoppingCartApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("login.fxml"));
-        fxmlLoader.setController(new LoginController(new UserService(new UserDAO())));
+        LoginController loginController = new LoginController(new UserService(new UserDAO()));
+        fxmlLoader.setController(loginController);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Shopping Cart App");
         stage.setScene(scene);
