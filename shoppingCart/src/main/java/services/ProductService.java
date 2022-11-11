@@ -11,11 +11,11 @@ public class ProductService {
         this.productDAO = productDAO;
     }
 
-    public void saveProduct(String name, double price, int quantity) {
-        productDAO.save(new Product(name, price, quantity));
+    public void saveProduct(Integer id, String name, double price, int quantity) {
+        productDAO.save(new Product(id, name, price, quantity));
     }
 
-    public Product loadProduct(String name, double price, int quantity) {
-        return productDAO.load(new Product(name, price, quantity));
+    public Product loadProduct(Integer id, String name, double price, int quantity) {
+        return productDAO.load(new Product(id, name, price, quantity));
     }
 }

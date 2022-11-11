@@ -1,4 +1,6 @@
 package main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,8 +16,21 @@ import java.util.ResourceBundle;
 
 public class ProductListController implements Initializable {
 
+    private Product currentProduct = new Product();
+
+    private ObservableList<Product> products = FXCollections.observableArrayList();
+
     @FXML
     private TableView<Product> productTable;
+
+    @FXML
+    private TableColumn<Product, String> nameColumn;
+
+    @FXML
+    private TableColumn<Product, Double> priceColumn;
+
+    @FXML
+    private TableColumn<Product, Integer> quantityColumn;
 
     @FXML
     private Button shoppingCart;
@@ -26,31 +41,16 @@ public class ProductListController implements Initializable {
         this.productService = productService;
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TableColumn nameColumn = new TableColumn<Product, String>("Name");
-        TableColumn priceColumn = new TableColumn<Product, Double>("Price");
-        TableColumn quantityColumn = new TableColumn<Product, Integer>("Quantity");
-        TableColumn actionsColumn = new TableColumn("Actions");
+        productTable.setItems(products);
 
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        productTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, actionsColumn);
-
-        //read products from the file system (products.txt) and add them to the table
-        //Product product = productService.loadProduct("name", 1.0, 1);
-
-        productTable.getItems().add(new Product("product 1", 9.99, 25));
-        productTable.getItems().add(new Product("product 2", 9.99, 25));
-        productTable.getItems().add(new Product("product 3", 9.99, 25));
-        productTable.getItems().add(new Product("product 4", 9.99, 25));
-        productTable.getItems().add(new Product("product 5", 9.99, 25));
-        productTable.getItems().add(new Product("product 6", 9.99, 25));
-        productTable.getItems().add(new Product("product 7", 9.99, 25));
-        productTable.getItems().add(new Product("product 8", 9.99, 25));
-
+        products.addAll(new Product(1, "Product 1", 9.99, 10),
+                        new Product(2, "Product 2", 9.99, 10),
+                        new Product(3, "Product 3", 9.99, 10));
     }
 }

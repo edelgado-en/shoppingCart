@@ -1,40 +1,56 @@
 package models;
 
+import javafx.beans.property.*;
+
 public class Product {
 
-    //name, price, quantity
-    private String name;
-    private double price;
-    private int quantity;
+    private IntegerProperty id = new SimpleIntegerProperty();
 
-    public Product(String name, double price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+    private StringProperty name = new SimpleStringProperty();
+    private DoubleProperty price = new SimpleDoubleProperty();
+    private IntegerProperty quantity = new SimpleIntegerProperty();
+
+    public Product() {
+
+    }
+
+    public Product(Integer id, String name, double price, int quantity) {
+        this.id.set(id);
+        this.name.set(name);
+        this.price.set(price);
+        this.quantity.set(quantity);
+    }
+
+    public void setId(Integer value) {
+        id.set(value);
+    }
+
+    public Integer getId() {
+        return id.get();
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public double getPrice() {
-        return price;
+        return price.get();
     }
 
     public int getQuantity() {
-        return quantity;
+        return quantity.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price.set(price);
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.quantity.set(quantity);
     }
 
     public String toString() {
@@ -57,11 +73,11 @@ public class Product {
 
         Product product = (Product) obj;
 
-        return name.equals(product.getName()) && price == product.getPrice() && quantity == product.getQuantity();
+        return name.equals(product.getName()) && price.equals(product.getPrice()) && quantity.equals(product.getQuantity());
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode() + (int) price + quantity;
+        return (int) (name.get().hashCode() + price.get() + quantity.get());
     }
 }
