@@ -9,6 +9,10 @@ public class User implements Serializable {
     private String username;
     private String password;
 
+    public User() {
+
+    }
+
     public User(String name, String password) {
         this.username = name;
         this.password = password;
@@ -20,6 +24,14 @@ public class User implements Serializable {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -46,8 +58,4 @@ public class User implements Serializable {
         return username.hashCode() + password.hashCode();
     }
 
-    @Override
-    public String toString() {
-        return "(" + username + ", " + password + ")";
-    }
 }

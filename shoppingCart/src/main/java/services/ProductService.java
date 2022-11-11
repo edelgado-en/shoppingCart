@@ -32,6 +32,8 @@ public class ProductService {
     //get product list from products.xml
     public ArrayList<Product> getProductList() {
         ArrayList<Product> productList = new ArrayList<>();
+        //TODO: this should be in the DAO layer
+
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("products.xml")));
             productList = (ArrayList<Product>) decoder.readObject();
@@ -44,19 +46,13 @@ public class ProductService {
 
     public void writeProductsToXML(ArrayList<Product> products) {
         FileOutputStream out = null;
-
+        // TODO: This should be in the DAO layer
         try {
             out = new FileOutputStream("products.xml");
             XMLEncoder encoder = new XMLEncoder(out);
             encoder.writeObject(products);
             encoder.close();
             out.close();
-
-            /*FileInputStream fis = new FileInputStream("products.xml");
-            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(fis));
-            ArrayList<Product> test = (ArrayList<Product>) decoder.readObject();
-            decoder.close();
-            fis.close();*/
 
         } catch (Exception e) {
             System.out.println(e);
