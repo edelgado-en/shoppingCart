@@ -4,7 +4,9 @@ import dao.UserDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import services.UserService;
 
 import java.io.IOException;
@@ -24,8 +26,18 @@ public class ShoppingCartApplication extends Application {
         stage.setTitle("Shopping Cart App");
         stage.setScene(scene);
         stage.setResizable(false);
+
+        stage.setOnCloseRequest(this::onClose);
+
         stage.show();
     }
+
+    private void onClose(WindowEvent event) {
+        new Alert(Alert.AlertType.INFORMATION,
+                "Thank you for using the Shopping Cart App!")
+                .showAndWait();
+    }
+
 
     public static void main(String[] args) {
         launch();
