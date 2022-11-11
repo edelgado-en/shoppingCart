@@ -19,13 +19,15 @@ import java.util.HashMap;
  */
 public class ShoppingCartApplication extends Application {
 
+    public static final String APP_NAME = "Shopping Cart App";
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(LoginController.TARGET_FXML));
         LoginController loginController = new LoginController(new UserService(new UserDAO()));
         fxmlLoader.setController(loginController);
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Shopping Cart App");
+        stage.setTitle(APP_NAME);
         stage.setScene(scene);
         stage.setResizable(false);
 

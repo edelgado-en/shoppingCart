@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 
 public class ProductListController implements Initializable {
 
+    public static final String TARGET_FXML = "productList.fxml";
+
     private Product currentProduct = new Product();
 
     private ObservableList<Product> products = FXCollections.observableArrayList();

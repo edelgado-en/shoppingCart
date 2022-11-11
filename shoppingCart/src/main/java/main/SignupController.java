@@ -19,6 +19,7 @@ import java.io.IOException;
  * @author Enrique Delgado
  */
 public class SignupController {
+    public static final String TARGET_FXML = "signup.fxml";
 
     private Stage stage;
     private Scene scene;

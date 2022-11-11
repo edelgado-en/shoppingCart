@@ -21,6 +21,8 @@ import java.io.IOException;
  */
 public class LoginController {
 
+    public static final String TARGET_FXML = "login.fxml";
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -41,7 +43,7 @@ public class LoginController {
     void signin(ActionEvent event) throws IOException {
         //check if user exists
         if (userService.loadUser(username.getText(), password.getText()) != null) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("productList.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(ProductListController.TARGET_FXML));
             fxmlLoader.setController(new ProductListController(new ProductService(new ProductDAO())));
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -57,7 +59,7 @@ public class LoginController {
 
     @FXML
     void signup(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("signup.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(SignupController.TARGET_FXML));
         fxmlLoader.setController(new SignupController(new UserService(new UserDAO())));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
