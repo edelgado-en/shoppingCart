@@ -35,6 +35,24 @@ public class ProductListController implements Initializable {
     @FXML
     private Button shoppingCart;
 
+    @FXML
+    private Button addToCartButton;
+
+    @FXML
+    private Button viewDetailsButton;
+    @FXML
+    void addToCart(ActionEvent event) {
+
+    }
+
+    @FXML
+    void viewDetails(ActionEvent event) {
+        // if currentProject is not null, then open the product details page
+        if (currentProduct != null) {
+            System.out.println("open the product details page");
+        }
+    }
+
     private ProductService productService;
 
     public ProductListController(ProductService productService) {
@@ -52,5 +70,26 @@ public class ProductListController implements Initializable {
         products.addAll(new Product(1, "Product 1", 9.99, 10),
                         new Product(2, "Product 2", 9.99, 10),
                         new Product(3, "Product 3", 9.99, 10));
+
+        //Add a listener to the table for when a row is selected
+        productTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            setCurrentProduct(newValue);
+        });
+
+    }
+
+    private void setCurrentProduct(Product product) {
+        if (product != null) {
+            currentProduct.setId(product.getId());
+            currentProduct.setName(product.getName());
+            currentProduct.setPrice(product.getPrice());
+            currentProduct.setQuantity(product.getQuantity());
+
+        } else {
+            currentProduct.setId(null);
+            currentProduct.setName(null);
+            currentProduct.setPrice(0);
+            currentProduct.setQuantity(0);
+        }
     }
 }
