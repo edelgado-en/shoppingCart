@@ -7,9 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import models.Product;
 import services.UserService;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Main class in charge of starting the application.. The default view is the login view.

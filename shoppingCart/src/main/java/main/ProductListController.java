@@ -12,6 +12,8 @@ import models.Product;
 import services.ProductService;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ProductListController implements Initializable {
@@ -19,6 +21,15 @@ public class ProductListController implements Initializable {
     private Product currentProduct = new Product();
 
     private ObservableList<Product> products = FXCollections.observableArrayList();
+
+    /**
+     * We use a map to make it very easy to fetch products by id.
+     */
+    private HashMap<Integer, Product> productMap = new HashMap<>();
+
+    public HashMap<Integer, Product> getProductMap() {
+        return productMap;
+    }
 
     @FXML
     private TableView<Product> productTable;
@@ -67,9 +78,17 @@ public class ProductListController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        products.addAll(new Product(1, "Product 1", 9.99, 10),
-                        new Product(2, "Product 2", 9.99, 10),
-                        new Product(3, "Product 3", 9.99, 10));
+        productMap.put(1, new Product(1, "Product 1", 9.99, 10));
+        productMap.put(2, new Product(2, "Product 2", 9.99, 10));
+        productMap.put(3, new Product(3, "Product 3", 9.99, 10));
+
+        //add products in map to products list
+        products.addAll(productMap.values());
+
+        //write map to xml file
+        //convert map to arraylist of products
+        ArrayList<Product> products = new ArrayList<Product>(productMap.values());
+        productService.writeProductsToXML(products);
 
         //Add a listener to the table for when a row is selected
         productTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {

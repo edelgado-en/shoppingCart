@@ -21,9 +21,9 @@
       <Button fx:id="shoppingCart" layoutX="454.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Shopping Cart" />
       <TableView fx:id="productTable" layoutX="8.0" layoutY="85.0" prefHeight="225.0" prefWidth="567.0">
          <columns>
-            <TableColumn fx:id="nameColumn" maxWidth="500.0" minWidth="100.0" prefWidth="200.0" text="Name" />
+            <TableColumn fx:id="nameColumn" maxWidth="500.0" minWidth="100.0" prefWidth="400.0" text="Name" />
             <TableColumn fx:id="priceColumn" maxWidth="80.0" minWidth="60.0" text="price" />
-            <TableColumn fx:id="quantityColumn" maxWidth="80.0" minWidth="80.0" text="quantity" />
+            <TableColumn fx:id="quantityColumn" maxWidth="80.0" minWidth="80.0" prefWidth="85.0" text="quantity" />
          </columns>
       </TableView>
       <GridPane layoutX="8.0" layoutY="310.0" prefHeight="90.0" prefWidth="567.0">
@@ -42,7 +42,7 @@
                   <Insets left="100.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="AddToCartButton" mnemonicParsing="false" onAction="#addToCart" text="Add to Cart" GridPane.columnIndex="1">
+            <Button fx:id="addToCartButton" mnemonicParsing="false" onAction="#addToCart" text="Add to Cart" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="200.0" />
                </GridPane.margin>

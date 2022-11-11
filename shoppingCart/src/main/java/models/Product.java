@@ -2,7 +2,11 @@ package models;
 
 import javafx.beans.property.*;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
+
+    public static final long serialVersionUID = 1L;
 
     private IntegerProperty id = new SimpleIntegerProperty();
 
@@ -51,10 +55,6 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity.set(quantity);
-    }
-
-    public String toString() {
-        return "Product: " + name + " Price: " + price + " Quantity: " + quantity;
     }
 
     @Override

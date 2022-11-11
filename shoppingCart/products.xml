@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.12" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>1</int>
+    </void>
+    <void property="name">
+     <string>Product 1</string>
+    </void>
+    <void property="price">
+     <double>9.99</double>
+    </void>
+    <void property="quantity">
+     <int>10</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>2</int>
+    </void>
+    <void property="name">
+     <string>Product 2</string>
+    </void>
+    <void property="price">
+     <double>9.99</double>
+    </void>
+    <void property="quantity">
+     <int>10</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>3</int>
+    </void>
+    <void property="name">
+     <string>Product 3</string>
+    </void>
+    <void property="price">
+     <double>9.99</double>
+    </void>
+    <void property="quantity">
+     <int>10</int>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
