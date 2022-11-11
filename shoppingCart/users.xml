@@ -21,5 +21,15 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="models.User">
+    <void property="password">
+     <string>password123</string>
+    </void>
+    <void property="username">
+     <string>tester4</string>
+    </void>
+   </object>
+  </void>
  </object>
 </java>

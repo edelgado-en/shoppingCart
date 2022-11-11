@@ -4,6 +4,11 @@ import javafx.beans.property.*;
 
 import java.io.Serializable;
 
+/**
+ * Product model class that represents a product.
+ *
+ * @author Enrique Delgado
+ */
 public class Product implements Serializable {
 
     public static final long serialVersionUID = 1L;
@@ -17,14 +22,12 @@ public class Product implements Serializable {
     public Product() {
 
     }
-
     public Product(Integer id, String name, double price, int quantity) {
         this.id.set(id);
         this.name.set(name);
         this.price.set(price);
         this.quantity.set(quantity);
     }
-
     public void setId(Integer value) {
         id.set(value);
     }

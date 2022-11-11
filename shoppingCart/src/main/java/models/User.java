@@ -2,6 +2,11 @@ package models;
 
 import java.io.Serializable;
 
+/**
+ * User model class that represents a user.
+ *
+ * @author Enrique Delgado
+ */
 public class User implements Serializable {
 
     public static final long serialVersionUID = 1L;

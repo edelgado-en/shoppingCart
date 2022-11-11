@@ -5,14 +5,16 @@ import models.Product;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 
+/**
+ * Service in charge of saving and loading products.
+ *
+ * @author Enrique Delgado
+ */
 public class ProductService {
 
     private ProductDAO productDAO;
@@ -65,6 +67,5 @@ public class ProductService {
                 }
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
 package main;
+import dao.ProductDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,10 +14,14 @@ import services.ProductService;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class ProductListController implements Initializable {
+/**
+ * ProductListController class in charge of handling actions related to products.
+ *
+ * @author Enrique Delgado
+ */
+public class ProductListController extends AbstractController implements Initializable {
 
     public static final String TARGET_FXML = "productList.fxml";
 
@@ -24,16 +29,7 @@ public class ProductListController implements Initializable {
 
     private ObservableList<Product> products = FXCollections.observableArrayList();
 
-    /**
-     * We use a map to make it very easy to fetch products by id.
-     */
-    private HashMap<Integer, Product> productMap = new HashMap<>();
-
     private ArrayList<Product> productList = new ArrayList<>();
-
-    public HashMap<Integer, Product> getProductMap() {
-        return productMap;
-    }
 
     @FXML
     private TableView<Product> productTable;
@@ -62,7 +58,7 @@ public class ProductListController implements Initializable {
 
     @FXML
     void viewDetails(ActionEvent event) {
-        // if currentProject is not null, then open the product details page
+        // if currentProject is not null, then open the product details page using SceneLoaderService
         if (currentProduct != null) {
             System.out.println("open the product details page");
         }
@@ -82,14 +78,10 @@ public class ProductListController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        // get the product list from products.xml
         productList = productService.getProductList();
 
         // add the products to the observable list
         products.addAll(productList);
-
-        //write products to products.xml
-        //productService.writeProductsToXML(productList);
 
         //Add a listener to the table for when a row is selected
         productTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -111,5 +103,20 @@ public class ProductListController implements Initializable {
             currentProduct.setPrice(0);
             currentProduct.setQuantity(0);
         }
+    }
+
+    @Override
+    public String getTargetFxml() {
+        return TARGET_FXML;
+    }
+
+    /**
+     * Factory method to create a new ProductListController. Abstraction to hide the implementation details.
+     * This method knows how to build a ProductListController.
+     *
+     * @return an instance of ProductListController
+     */
+    public static ProductListController build() {
+        return new ProductListController(new ProductService(new ProductDAO()));
     }
 }

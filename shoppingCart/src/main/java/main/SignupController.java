@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import services.SceneLoaderService;
 import services.UserService;
 
 import java.io.IOException;
@@ -18,12 +19,8 @@ import java.io.IOException;
  *
  * @author Enrique Delgado
  */
-public class SignupController {
+public class SignupController extends AbstractController {
     public static final String TARGET_FXML = "signup.fxml";
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     private UserService userService;
 
@@ -43,28 +40,38 @@ public class SignupController {
      */
     @FXML
     void backToLogin(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
-        fxmlLoader.setController(new LoginController(new UserService(new UserDAO())));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-        stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneLoaderService.loadScene(stage, LoginController.build());
     }
 
     @FXML
-    void signUp(ActionEvent event) {
-        // if there is no user with the same username and password
+    void signUp(ActionEvent event) throws IOException {
         if (userService.loadUser(username.getText(), password.getText()) == null) {
-            // save the user
+
             userService.saveUser(username.getText(), password.getText());
 
-            //TODO: redirect the user to the product list view
-
-
-        } else {
-            // show error message in the signup screen. TODO: Add a label to fxml to show error messages
-            System.out.println("User already exists");
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            SceneLoaderService.loadScene(stage, ProductListController.build());
         }
+
+        // show error message in the signup screen. TODO: Add a label to fxml to show error messages
+        System.out.println("User already exists");
+
     }
 
+    @Override
+    public String getTargetFxml() {
+        return TARGET_FXML;
+    }
+
+    /**
+     * Factory method to create a new SignupController. Abstraction to hide the implementation details.
+     * This method knows how to build a SignupController.
+     *
+     * @return an instance of SignupController
+     */
+    public static SignupController build() {
+        return new SignupController(new UserService(new UserDAO()));
+    }
 }

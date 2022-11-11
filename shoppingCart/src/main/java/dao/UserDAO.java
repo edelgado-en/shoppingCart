@@ -34,7 +34,6 @@ public class UserDAO implements PersistenceService<User> {
 
         //write the new list of users to the file
         FileOutputStream out = null;
-        // TODO: This should be in the DAO layer
         try {
             out = new FileOutputStream("users.xml");
             XMLEncoder encoder = new XMLEncoder(out);
@@ -44,6 +43,7 @@ public class UserDAO implements PersistenceService<User> {
 
         } catch (Exception e) {
             System.out.println(e);
+
         } finally {
             if (out != null) {
                 try {
@@ -53,8 +53,6 @@ public class UserDAO implements PersistenceService<User> {
                 }
             }
         }
-
-
     }
 
     @Override
@@ -78,27 +76,5 @@ public class UserDAO implements PersistenceService<User> {
         }
 
         return loadedUser;
-
-
-        //read all users from the users.text. If you find the provided user, then return it. Otherwise return null.
-        // loop through all entries until you find the user
-        // if you find the user, return it
-        // if you don't find the user, return null
-        /*try {
-            try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    // process the line
-                    if (line.contains(user.getUsername())) {
-                        return user;
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-
-        }
-
-        return null;*/
     }
 }

@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import services.ProductService;
+import services.SceneLoaderService;
 import services.UserService;
 
 import java.io.IOException;
@@ -19,13 +20,11 @@ import java.io.IOException;
  * LoginController class in charge of authenticating users.
  * @author Enrique Delgado
  */
-public class LoginController {
+public class LoginController extends AbstractController{
 
     public static final String TARGET_FXML = "login.fxml";
 
     private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     private UserService userService;
 
@@ -43,27 +42,36 @@ public class LoginController {
     void signin(ActionEvent event) throws IOException {
         //check if user exists
         if (userService.loadUser(username.getText(), password.getText()) != null) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(ProductListController.TARGET_FXML));
-            fxmlLoader.setController(new ProductListController(new ProductService(new ProductDAO())));
-
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(fxmlLoader.load());
-            stage.setScene(scene);
-            stage.show();
 
-        } else {
-            //show error message in the login screen. TODO: Add a label to fxml to show error messages
-            System.out.println("User does not exist");
+            SceneLoaderService.loadScene(stage, ProductListController.build());
+
         }
+
+        //show error message in the login screen. TODO: Add a label to fxml to show error messages
+        System.out.println("User does not exist");
+
     }
 
     @FXML
     void signup(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(SignupController.TARGET_FXML));
-        fxmlLoader.setController(new SignupController(new UserService(new UserDAO())));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-        stage.show();
+        SceneLoaderService.loadScene(stage, SignupController.build());
     }
+
+    @Override
+    public String getTargetFxml() {
+        return TARGET_FXML;
+    }
+
+    /**
+     * Factory method to create a new LoginController. Abstraction to hide the implementation details.
+     * This method knows how to build a LoginController.
+     *
+     * @return an instance of LoginController
+     */
+    public static LoginController build() {
+        return new LoginController(new UserService(new UserDAO()));
+    }
+
 }
