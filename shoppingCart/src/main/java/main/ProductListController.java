@@ -27,6 +27,8 @@ public class ProductListController implements Initializable {
      */
     private HashMap<Integer, Product> productMap = new HashMap<>();
 
+    private ArrayList<Product> productList = new ArrayList<>();
+
     public HashMap<Integer, Product> getProductMap() {
         return productMap;
     }
@@ -78,17 +80,14 @@ public class ProductListController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        productMap.put(1, new Product(1, "Product 1", 9.99, 10));
-        productMap.put(2, new Product(2, "Product 2", 9.99, 10));
-        productMap.put(3, new Product(3, "Product 3", 9.99, 10));
+        // get the product list from products.xml
+        productList = productService.getProductList();
 
-        //add products in map to products list
-        products.addAll(productMap.values());
+        // add the products to the observable list
+        products.addAll(productList);
 
-        //write map to xml file
-        //convert map to arraylist of products
-        ArrayList<Product> products = new ArrayList<Product>(productMap.values());
-        productService.writeProductsToXML(products);
+        //write products to products.xml
+        //productService.writeProductsToXML(productList);
 
         //Add a listener to the table for when a row is selected
         productTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {

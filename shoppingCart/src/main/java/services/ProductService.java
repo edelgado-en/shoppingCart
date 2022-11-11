@@ -29,6 +29,19 @@ public class ProductService {
         return productDAO.load(new Product(id, name, price, quantity));
     }
 
+    //get product list from products.xml
+    public ArrayList<Product> getProductList() {
+        ArrayList<Product> productList = new ArrayList<>();
+        try {
+            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("products.xml")));
+            productList = (ArrayList<Product>) decoder.readObject();
+            decoder.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+
     public void writeProductsToXML(ArrayList<Product> products) {
         FileOutputStream out = null;
 
