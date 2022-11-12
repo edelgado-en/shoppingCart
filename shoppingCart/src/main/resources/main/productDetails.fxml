@@ -32,13 +32,13 @@
             <Label text="Description" GridPane.rowIndex="1" />
             <Label text="Price" GridPane.rowIndex="2" />
             <Label text="Quantity" GridPane.rowIndex="3" />
-            <Label text="Label" GridPane.columnIndex="1" />
-            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="productName" text="Label" GridPane.columnIndex="1" />
+            <Label fx:id="productDescription" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="productPrice" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="productQuantity" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button layoutX="315.0" layoutY="235.0" mnemonicParsing="false" text="Add to Cart" />
-      <Button layoutX="184.0" layoutY="235.0" mnemonicParsing="false" text="Back to Listing" />
+      <Button layoutX="348.0" layoutY="235.0" mnemonicParsing="false" text="Add to Cart" />
+      <Button layoutX="184.0" layoutY="235.0" mnemonicParsing="false" onAction="#backToListing" text="Back to Listing" />
    </children>
 </AnchorPane>

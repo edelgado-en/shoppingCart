@@ -5,13 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import models.Product;
 import services.ProductService;
+import services.SceneLoaderService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -57,10 +61,11 @@ public class ProductListController extends AbstractController implements Initial
     }
 
     @FXML
-    void viewDetails(ActionEvent event) {
+    void viewDetails(ActionEvent event) throws IOException {
         // if currentProject is not null, then open the product details page using SceneLoaderService
         if (currentProduct != null) {
-            System.out.println("open the product details page");
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            SceneLoaderService.loadScene(stage, ProductDetailsController.build(currentProduct));
         }
     }
 
