@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public class LoginController extends AbstractController{
 
-    public static final String TARGET_FXML = "login.fxml";
+    private static final String TARGET_FXML = "login.fxml";
 
     private Stage stage;
 

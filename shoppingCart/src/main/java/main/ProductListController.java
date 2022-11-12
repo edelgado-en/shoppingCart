@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
  */
 public class ProductListController extends AbstractController implements Initializable {
 
-    public static final String TARGET_FXML = "productList.fxml";
+    private static final String TARGET_FXML = "productList.fxml";
 
     private Product currentProduct = new Product();
 

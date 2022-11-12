@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class ShoppingCartApplication extends Application {
 
-    public static final String APP_NAME = "Shopping Cart App";
+    private static final String APP_NAME = "Shopping Cart App";
 
     @Override
     public void start(Stage stage) throws IOException {
