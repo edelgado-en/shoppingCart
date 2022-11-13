@@ -57,8 +57,15 @@ public class ProductListController extends AbstractController implements Initial
     @FXML
     private Button viewDetailsButton;
     @FXML
-    void addToCart(ActionEvent event) {
+    void addToCart(ActionEvent event) throws IOException {
+        //TODO: use ShoppingCartService to add product to cart
 
+        //TODO: update cart counter in MainController
+        FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
+        Parent root = fxmlLoader.load();
+
+        MainController mainController = fxmlLoader.getController();
+        mainController.updateCartCounter(root);
     }
 
     @FXML

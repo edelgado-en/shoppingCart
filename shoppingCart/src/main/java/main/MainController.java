@@ -40,12 +40,18 @@ public class MainController extends AbstractController implements Initializable 
 
     public static BorderPane staticMainPane;
 
-    public BorderPane getMainPane() {
-        return mainPane;
+    public static Integer cartItemsCounter = 0;
+
+    public Label getCartCounter() {
+        return cartCounter;
     }
 
-    public static MainController build() {
-        return new MainController();
+    public void setCartCounter(Label cartCounter) {
+        this.cartCounter = cartCounter;
+    }
+
+    public BorderPane getMainPane() {
+        return mainPane;
     }
 
     @Override
@@ -57,16 +63,28 @@ public class MainController extends AbstractController implements Initializable 
         mainPane.setCenter(pane);
     }
 
+    // updateCartCounter
+    public void updateCartCounter(Parent root) {
+        cartItemsCounter++;
+        cartCounter.setText(cartItemsCounter.toString());
+
+        // this is needed to re-render the view and show the updated values
+        ShoppingCartApplication.staticStage.setScene(new Scene(root));
+        ShoppingCartApplication.staticStage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ProductListController productListController = ProductListController.build();
         FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource(productListController.getTargetFxml()));
         fxmlLoader.setController(productListController);
+
+        cartCounter.setText(String.valueOf(cartItemsCounter));
+
         try {
             Pane centerView = fxmlLoader.load();
 
             staticMainPane = mainPane;
-
             staticMainPane.setCenter(centerView);
 
         } catch (IOException e) {
@@ -82,5 +100,9 @@ public class MainController extends AbstractController implements Initializable 
 
         ShoppingCartApplication.staticStage.setScene(new Scene(root));
         ShoppingCartApplication.staticStage.show();
+    }
+
+    public static MainController build() {
+        return new MainController();
     }
 }

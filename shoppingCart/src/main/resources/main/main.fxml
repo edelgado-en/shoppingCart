@@ -43,7 +43,7 @@
                               <Insets left="190.0" />
                            </GridPane.margin>
                         </Button>
-                        <Label fx:id="cartCounter" text="Label" textFill="WHITE" GridPane.columnIndex="1">
+                        <Label fx:id="cartCounter" text="0" textFill="WHITE" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="240.0" />
                            </GridPane.margin>
