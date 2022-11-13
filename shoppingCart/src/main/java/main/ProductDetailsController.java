@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Product;
 import services.SceneLoaderService;
@@ -50,8 +51,9 @@ public class ProductDetailsController extends AbstractController implements Init
 
     @FXML
     void backToListing(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        SceneLoaderService.loadScene(stage,ProductListController.build());
+        Pane centerView = SceneLoaderService.loadPane(ProductListController.build());
+        MainController.loadCenterView(centerView);
+
     }
 
     public static ProductDetailsController build(Product product) {

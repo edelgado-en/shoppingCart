@@ -2,6 +2,7 @@ package services;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.AbstractController;
 import main.ShoppingCartApplication;
@@ -23,4 +24,11 @@ public class SceneLoaderService {
         stage.setResizable(false);
         stage.show();
     }
+
+    public static Pane loadPane(AbstractController controller) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource(controller.getTargetFxml()));
+        fxmlLoader.setController(controller);
+        return fxmlLoader.load();
+    }
+
 }

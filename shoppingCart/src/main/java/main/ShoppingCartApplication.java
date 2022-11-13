@@ -17,11 +17,14 @@ public class ShoppingCartApplication extends Application {
 
     private static final String APP_NAME = "Shopping Cart App";
 
+    public static Stage staticStage;
+
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle(APP_NAME);
-        stage.setOnCloseRequest(this::onClose);
-        SceneLoaderService.loadScene(stage, LoginController.build());
+        staticStage = stage;
+        staticStage.setTitle(APP_NAME);
+        staticStage.setOnCloseRequest(this::onClose);
+        SceneLoaderService.loadScene(staticStage, LoginController.build());
     }
 
     private void onClose(WindowEvent event) {

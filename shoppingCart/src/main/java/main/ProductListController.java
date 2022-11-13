@@ -4,12 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Product;
 import services.ProductService;
@@ -48,9 +52,6 @@ public class ProductListController extends AbstractController implements Initial
     private TableColumn<Product, Integer> quantityColumn;
 
     @FXML
-    private Button shoppingCart;
-
-    @FXML
     private Button addToCartButton;
 
     @FXML
@@ -62,10 +63,9 @@ public class ProductListController extends AbstractController implements Initial
 
     @FXML
     void viewDetails(ActionEvent event) throws IOException {
-        // if currentProject is not null, then open the product details page using SceneLoaderService
-        if (currentProduct != null) {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            SceneLoaderService.loadScene(stage, ProductDetailsController.build(currentProduct));
+        if (currentProduct != null && currentProduct.getName() != null) {
+            Pane centerView = SceneLoaderService.loadPane(ProductDetailsController.build(currentProduct));
+            MainController.loadCenterView(centerView);
         }
     }
 

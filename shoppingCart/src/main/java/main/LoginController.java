@@ -44,7 +44,16 @@ public class LoginController extends AbstractController{
         if (userService.loadUser(username.getText(), password.getText()) != null) {
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            SceneLoaderService.loadScene(stage, ProductListController.build());
+            FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+
+            //SceneLoaderService.loadScene(stage, MainController.build());
+
+            //SceneLoaderService.loadScene(stage, ProductListController.build());
 
         }
 
