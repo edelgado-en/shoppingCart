@@ -3,10 +3,8 @@ package main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import models.Product;
 import services.SceneLoaderService;
 
@@ -14,6 +12,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * @author Enrique Delgado
+ */
 public class ProductDetailsController extends AbstractController implements Initializable {
 
     private static final String TARGET_FXML = "productDetails.fxml";

@@ -14,8 +14,9 @@ public class Product implements Serializable {
     public static final long serialVersionUID = 1L;
 
     private IntegerProperty id = new SimpleIntegerProperty();
-
     private StringProperty name = new SimpleStringProperty();
+
+    private StringProperty description = new SimpleStringProperty();
     private DoubleProperty price = new SimpleDoubleProperty();
     private IntegerProperty quantity = new SimpleIntegerProperty();
 

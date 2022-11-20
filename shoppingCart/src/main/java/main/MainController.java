@@ -1,5 +1,6 @@
 package main;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -80,6 +81,23 @@ public class MainController extends AbstractController implements Initializable 
         fxmlLoader.setController(productListController);
 
         cartCounter.setText(String.valueOf(cartItemsCounter));
+
+        try {
+            Pane centerView = fxmlLoader.load();
+
+            staticMainPane = mainPane;
+            staticMainPane.setCenter(centerView);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void onViewCart(ActionEvent event) {
+        ShoppingCartController shoppingCartControllerController = ShoppingCartController.build();
+        FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource(shoppingCartControllerController.getTargetFxml()));
+        fxmlLoader.setController(shoppingCartControllerController);
 
         try {
             Pane centerView = fxmlLoader.load();

@@ -1,12 +1,12 @@
 package dao;
 
-import models.Product;
 import models.User;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -17,13 +17,15 @@ import java.util.ArrayList;
  */
 public class UserDAO implements PersistenceService<User> {
 
+    private static final String FILE_NAME = "users.xml";
+
     @Override
     public void save(User user) {
         //add user to the list of users in users.xml using XMLEncoder
         ArrayList<User> userList = new ArrayList<>();
         User loadedUser = null;
         try {
-            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("users.xml")));
+            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(FILE_NAME)));
             userList = (ArrayList<User>) decoder.readObject();
             decoder.close();
         } catch (Exception e) {
@@ -62,7 +64,7 @@ public class UserDAO implements PersistenceService<User> {
         ArrayList<User> userList = new ArrayList<>();
         User loadedUser = null;
         try {
-            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("users.xml")));
+            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(FILE_NAME)));
             userList = (ArrayList<User>) decoder.readObject();
             decoder.close();
 

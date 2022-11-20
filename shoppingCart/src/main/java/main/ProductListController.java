@@ -1,23 +1,23 @@
 package main;
+
 import dao.ProductDAO;
+import dao.ShoppingCartDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import models.Product;
 import services.ProductService;
 import services.SceneLoaderService;
+import services.ShoppingCartService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,30 +56,15 @@ public class ProductListController extends AbstractController implements Initial
 
     @FXML
     private Button viewDetailsButton;
-    @FXML
-    void addToCart(ActionEvent event) throws IOException {
-        //TODO: use ShoppingCartService to add product to cart
-
-        //TODO: update cart counter in MainController
-        FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
-        Parent root = fxmlLoader.load();
-
-        MainController mainController = fxmlLoader.getController();
-        mainController.updateCartCounter(root);
-    }
-
-    @FXML
-    void viewDetails(ActionEvent event) throws IOException {
-        if (currentProduct != null && currentProduct.getName() != null) {
-            Pane centerView = SceneLoaderService.loadPane(ProductDetailsController.build(currentProduct));
-            MainController.loadCenterView(centerView);
-        }
-    }
 
     private ProductService productService;
 
-    public ProductListController(ProductService productService) {
+    private ShoppingCartService shoppingCartService;
+
+    public ProductListController(ProductService productService,
+                                 ShoppingCartService shoppingCartService) {
         this.productService = productService;
+        this.shoppingCartService = shoppingCartService;
     }
 
     @Override
@@ -99,7 +84,27 @@ public class ProductListController extends AbstractController implements Initial
         productTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             setCurrentProduct(newValue);
         });
+    }
 
+    @FXML
+    void addToCart(ActionEvent event) throws IOException {
+        //TODO: use ShoppingCartService to add product to cart
+        shoppingCartService.addToCart(currentProduct);
+
+        //TODO: update cart counter in MainController
+        FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
+        Parent root = fxmlLoader.load();
+
+        MainController mainController = fxmlLoader.getController();
+        mainController.updateCartCounter(root);
+    }
+
+    @FXML
+    void viewDetails(ActionEvent event) throws IOException {
+        if (currentProduct != null && currentProduct.getName() != null) {
+            Pane centerView = SceneLoaderService.loadPane(ProductDetailsController.build(currentProduct));
+            MainController.loadCenterView(centerView);
+        }
     }
 
     private void setCurrentProduct(Product product) {
@@ -129,6 +134,7 @@ public class ProductListController extends AbstractController implements Initial
      * @return an instance of ProductListController
      */
     public static ProductListController build() {
-        return new ProductListController(new ProductService(new ProductDAO()));
+        return new ProductListController(new ProductService(new ProductDAO()),
+                                         new ShoppingCartService(new ShoppingCartDAO()));
     }
 }

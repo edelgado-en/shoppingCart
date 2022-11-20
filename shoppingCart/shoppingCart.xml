@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.12" class="java.beans.XMLDecoder">
+ <object class="models.ShoppingCart" id="ShoppingCart0">
+  <void property="shoppingCartItemList">
+   <void method="add">
+    <object class="models.ShoppingCartItem">
+     <void property="price">
+      <double>39.96</double>
+     </void>
+     <void property="product">
+      <object class="models.Product">
+       <void property="id">
+        <int>1</int>
+       </void>
+       <void property="name">
+        <string>Product 1</string>
+       </void>
+       <void property="price">
+        <double>9.99</double>
+       </void>
+       <void property="quantity">
+        <int>10</int>
+       </void>
+      </object>
+     </void>
+     <void property="quantity">
+      <int>4</int>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="totalPrice">
+   <double>39.96</double>
+  </void>
+ </object>
+</java>

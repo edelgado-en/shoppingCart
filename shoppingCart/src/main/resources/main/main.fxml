@@ -38,7 +38,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="cartButton" mnemonicParsing="false" text="Cart" GridPane.columnIndex="1">
+                        <Button fx:id="cartButton" mnemonicParsing="false" onAction="#onViewCart" text="Cart" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="190.0" />
                            </GridPane.margin>

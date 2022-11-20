@@ -2,6 +2,10 @@ package dao;
 
 import models.Product;
 
+/**
+ *
+ * @author Enrique Delgado
+ */
 public class ProductDAO implements PersistenceService<Product> {
 
     @Override
