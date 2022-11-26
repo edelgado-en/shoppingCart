@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * ProductDetailsController class in charge of handling actions related to product details.
  *
  * @author Enrique Delgado
  */
@@ -58,6 +59,12 @@ public class ProductDetailsController extends AbstractController implements Init
 
     }
 
+    /**
+     * Factory method to create a new ProductDetailsController. Abstraction to hide the implementation details.
+     * This method knows how to build a ProductDetailsController.
+     *
+     * @return an instance of ProductDetailsController
+     */
     public static ProductDetailsController build(Product product) {
         return new ProductDetailsController(product);
     }

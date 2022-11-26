@@ -73,6 +73,7 @@ public class UserDAO implements PersistenceService<User> {
                     loadedUser = u;
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

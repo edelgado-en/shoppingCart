@@ -88,10 +88,8 @@ public class ProductListController extends AbstractController implements Initial
 
     @FXML
     void addToCart(ActionEvent event) throws IOException {
-        //TODO: use ShoppingCartService to add product to cart
         shoppingCartService.addToCart(currentProduct);
 
-        //TODO: update cart counter in MainController
         FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
         Parent root = fxmlLoader.load();
 
