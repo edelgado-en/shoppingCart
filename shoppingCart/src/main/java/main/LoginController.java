@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -27,16 +28,39 @@ public class LoginController extends AbstractController{
 
     private UserService userService;
 
+    /**
+     * password text field binding.
+     */
     @FXML
     private TextField password;
 
+    /**
+     * username text field binding.
+     */
     @FXML
     private TextField username;
 
+    /**
+     * Shows the error message when user provides wrong credentials.
+     */
+    @FXML
+    private Label errorMessage;
+
+    /**
+     * Instantiates a new Login controller with the provided userService object.
+     * @param userService
+     */
     public LoginController(UserService userService) {
         this.userService = userService;
     }
 
+    /**
+     * Handles user signin. If the user provides valid credentials, it redirects the user to the
+     * product list screen. Otherwise, it shows an error message.
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void signin(ActionEvent event) throws IOException {
         //check if user exists
@@ -50,11 +74,16 @@ public class LoginController extends AbstractController{
             stage.show();
         }
 
-        //show error message in the login screen. TODO: Add a label to fxml to show error messages
-        System.out.println("User does not exist");
-
+        // Show an error message if a user with the user provides wrong credentials.
+        errorMessage.setVisible(true);
+        errorMessage.setText("Wrong username or password");
     }
 
+    /**
+     * Redirects the user to the signup screen.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void signup(ActionEvent event) throws IOException {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

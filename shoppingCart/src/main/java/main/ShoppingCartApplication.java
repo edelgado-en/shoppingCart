@@ -19,6 +19,13 @@ public class ShoppingCartApplication extends Application {
 
     public static Stage staticStage;
 
+    /**
+     * Start method inherited from Application class. It sets the title of the application and loads the login view.
+     * Login view is the default view.
+     *
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         staticStage = stage;
@@ -27,6 +34,11 @@ public class ShoppingCartApplication extends Application {
         SceneLoaderService.loadScene(staticStage, LoginController.build());
     }
 
+    /**
+     * OnClose shows an alert window when the user tries to close the application.
+     * This gets called from onCloseRequest event in the staticStage.
+     * @param event
+     */
     private void onClose(WindowEvent event) {
         new Alert(Alert.AlertType.INFORMATION,
                 "Thank you for using the Shopping Cart App!")

@@ -18,13 +18,14 @@
       <TextField fx:id="username" layoutX="220.0" layoutY="160.0" />
       <Label layoutX="220.0" layoutY="204.0" text="Password" />
       <TextField fx:id="password" layoutX="220.0" layoutY="221.0" />
-      <Button layoutX="220.0" layoutY="266.0" mnemonicParsing="false" onAction="#signin" prefHeight="26.0" prefWidth="160.0" text="Sign in" />
+      <Button layoutX="221.0" layoutY="279.0" mnemonicParsing="false" onAction="#signin" prefHeight="26.0" prefWidth="160.0" text="Sign in" />
       <Label layoutX="214.0" layoutY="103.0" text="Sign in to your account">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="220.0" layoutY="304.0" text="Don't have an account?" />
-      <Hyperlink layoutX="350.0" layoutY="301.0" onAction="#signup" text="sign up" />
+      <Label layoutX="220.0" layoutY="316.0" text="Don't have an account?" />
+      <Hyperlink layoutX="349.0" layoutY="313.0" onAction="#signup" text="sign up" />
+      <Label fx:id="errorMessage" layoutX="221.0" layoutY="255.0" prefHeight="17.0" prefWidth="160.0" />
    </children>
 </AnchorPane>

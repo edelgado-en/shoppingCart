@@ -41,6 +41,11 @@ public class MainController extends AbstractController implements Initializable 
 
     public static BorderPane staticMainPane;
 
+    /**
+     * this value shows the current number of items in the shopping cart. IT is static so that the value
+     * is correctly updated when the user adds or removes items from the cart between different instances of the
+     * controller
+     */
     public static Integer cartItemsCounter = 0;
 
     public Label getCartCounter() {
@@ -64,7 +69,11 @@ public class MainController extends AbstractController implements Initializable 
         mainPane.setCenter(pane);
     }
 
-    // updateCartCounter
+    /**
+     * Updates the cart counter label with the current number of items in the cart.
+     *
+     * @param root
+     */
     public void updateCartCounter(Parent root) {
         cartItemsCounter++;
         cartCounter.setText(cartItemsCounter.toString());
@@ -74,6 +83,12 @@ public class MainController extends AbstractController implements Initializable 
         ShoppingCartApplication.staticStage.show();
     }
 
+    /**
+     * When the MainController is initialized, the product list view is loaded into the center view of the pane.
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ProductListController productListController = ProductListController.build();
@@ -93,6 +108,11 @@ public class MainController extends AbstractController implements Initializable 
         }
     }
 
+    /**
+     * OnViewCart will redirect the user to the shopping cart view.
+     *
+     * @param event
+     */
     @FXML
     void onViewCart(ActionEvent event) {
         ShoppingCartController shoppingCartControllerController = ShoppingCartController.build();
@@ -110,6 +130,12 @@ public class MainController extends AbstractController implements Initializable 
         }
     }
 
+    /**
+     * This method will load the provided pane object and set it as center view of the main pane.
+     *
+     * @param centerView
+     * @throws IOException
+     */
     public static void loadCenterView(Pane centerView) throws IOException {
         FXMLLoader loader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
         Parent root = loader.load();
