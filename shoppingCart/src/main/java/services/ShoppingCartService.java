@@ -18,6 +18,14 @@ public class ShoppingCartService {
         this.shoppingCartDAO = shoppingCartDAO;
     }
 
+    /**
+     * Adds a product to the shopping cart. If the shopping cart does not exists, it creates a new one and
+     * add the provided product with a quantity of 1.
+     * if the shopping cart exists, then it checks if the product already exists in the shopping cart. If it does,
+     * it increases the quantity by 1 and updates the total price of the shopping cart. If the product does not exist
+     * in the shopping cart, it adds the product with a quantity of 1 and updates the total price of the shopping cart.
+     * @param product
+     */
     public void addToCart(Product product) {
         // fetch shopping cart from shoppingCart.xml
         ShoppingCart shoppingCart = shoppingCartDAO.load(null);

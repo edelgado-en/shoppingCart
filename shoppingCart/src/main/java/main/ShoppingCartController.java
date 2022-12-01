@@ -121,9 +121,21 @@ public class ShoppingCartController extends AbstractController implements Initia
         MainController.loadCenterView(centerView);
     }
 
+    /**
+     * It increases the quantity of the selected shopping cart item by 1. It refreshes the table after.
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void onAddItemQuantity(ActionEvent event) {
-        //TODO: implement this method
+    void onAddItemQuantity(ActionEvent event) throws IOException {
+        if (currentShoppingItem != null) {
+            shoppingCartService.addToCart(currentShoppingItem.getProduct());
+
+            //refresh view
+            Pane centerView = SceneLoaderService.loadPane(ShoppingCartController.build());
+            MainController.loadCenterView(centerView);
+        }
     }
 
     @FXML
@@ -131,6 +143,13 @@ public class ShoppingCartController extends AbstractController implements Initia
         //TODO: this should take you to the checkout view where you can enter your credit card information and pay
     }
 
+    /**
+     * It decrements the quantity of the current shopping cart item by one. if the quantity reaches 0,
+     * then the shopping cart item gets removed from the shopping cart. It refreshes the view after.
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onSubtractItemQuantity(ActionEvent event) throws IOException {
         if (currentShoppingItem != null) {
@@ -142,6 +161,11 @@ public class ShoppingCartController extends AbstractController implements Initia
         }
     }
 
+    /**
+     * Delets the whole shopping cart and refreshes the view.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void deleteShoppingCart(ActionEvent event) throws IOException {
         shoppingCartService.deleteShoppingCart();
