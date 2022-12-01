@@ -8,5 +8,9 @@ package main;
  */
 public abstract class AbstractController {
 
+    /**
+     * Returns the corresponding fxml file name each controller must have.
+     * @return
+     */
     public abstract String getTargetFxml();
 }

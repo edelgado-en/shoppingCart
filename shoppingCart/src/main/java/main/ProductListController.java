@@ -31,14 +31,30 @@ import java.util.ResourceBundle;
  */
 public class ProductListController extends AbstractController implements Initializable {
 
+    /**
+     * Target FXML file.
+     */
     private static final String TARGET_FXML = "productList.fxml";
 
+    /**
+     * The current product selected by the user.
+     */
     private Product currentProduct = new Product();
 
+    /**
+     * An observable list of products so that we can keep track of the selected product, and also
+     * have out of the box functionality for sorting by columns.
+     */
     private ObservableList<Product> products = FXCollections.observableArrayList();
 
+    /**
+     * The actual product list.
+     */
     private ArrayList<Product> productList = new ArrayList<>();
 
+    /**
+     * The product table binding.
+     */
     @FXML
     private TableView<Product> productTable;
 
@@ -61,12 +77,25 @@ public class ProductListController extends AbstractController implements Initial
 
     private ShoppingCartService shoppingCartService;
 
+    /**
+     * Instantiates a new ProductListController with the provided product service and shopping cart service.
+     * @param productService in charge of handling product interactions
+     * @param shoppingCartService in charge of handling shopping cart interactions
+     */
     public ProductListController(ProductService productService,
                                  ShoppingCartService shoppingCartService) {
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
     }
 
+    /**
+     * Initializes this controller. It sets the product table columns and loads the products.
+     * The products are loaded from the productService class. A listener is added to the product table
+     * so that we can keep track of which product is selected by the user.
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         productTable.setItems(products);
@@ -86,6 +115,13 @@ public class ProductListController extends AbstractController implements Initial
         });
     }
 
+    /**
+     * Adds the current product to the shopping cart using the shoppingCartService. The cart counter in the main
+     * controller gets updated.
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void addToCart(ActionEvent event) throws IOException {
         shoppingCartService.addToCart(currentProduct);
@@ -97,6 +133,12 @@ public class ProductListController extends AbstractController implements Initial
         mainController.updateCartCounter(root);
     }
 
+    /**
+     * Redirect the user to the product details view if the current product is not null.
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void viewDetails(ActionEvent event) throws IOException {
         if (currentProduct != null && currentProduct.getName() != null) {
@@ -105,6 +147,10 @@ public class ProductListController extends AbstractController implements Initial
         }
     }
 
+    /**
+     * Sets the current product with the values of the provided product.
+     * @param product
+     */
     private void setCurrentProduct(Product product) {
         if (product != null) {
             currentProduct.setId(product.getId());

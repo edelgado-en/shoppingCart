@@ -28,12 +28,25 @@ public class ShoppingCartController extends AbstractController implements Initia
 
     private static final String TARGET_FXML = "shoppingCart.fxml";
 
+    /**
+     * The current shopping cart item selected by the user.
+     */
     private ShoppingCartItem currentShoppingItem = new ShoppingCartItem();
 
+    /**
+     * An observable list of shopping car items so that we can keep track of the selected item, and also
+     * have out of the box functionality for sorting by columns.
+     */
     private ObservableList<ShoppingCartItem> shoppingCartItems = FXCollections.observableArrayList();
 
+    /**
+     * The actual shopping cart item list.
+     */
     private List<ShoppingCartItem> shoppingCartItemList = new ArrayList<>();
 
+    /**
+     * The shopping cart table binding.
+     */
     @FXML
     private TableView<ShoppingCartItem> shoppingCartItemTable;
 
@@ -48,6 +61,11 @@ public class ShoppingCartController extends AbstractController implements Initia
 
     private ShoppingCartService shoppingCartService;
 
+    /**
+     * Instantiates a new ShoppingCartController with the provided shopping cart service.
+     *
+     * @param shoppingCartService
+     */
     public ShoppingCartController(ShoppingCartService shoppingCartService) {
         this.shoppingCartService = shoppingCartService;
     }
@@ -57,6 +75,15 @@ public class ShoppingCartController extends AbstractController implements Initia
         return TARGET_FXML;
     }
 
+    /**
+     * Initializes this controller. This method is automatically called after the fxml file has been
+     * loaded. This method is responsible for setting up the table columns and populating the table
+     * with data. A listener is also added to the table so that we can keep track of the selected
+     * product.
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         shoppingCartItemTable.setItems(shoppingCartItems);
@@ -95,6 +122,10 @@ public class ShoppingCartController extends AbstractController implements Initia
         //TODO: implement this method
     }
 
+    /**
+     * Sets the current shopping cart item.
+     * @param shoppingCartItem
+     */
     private void setCurrentShoppingItem(ShoppingCartItem shoppingCartItem) {
         if (shoppingCartItem != null) {
             currentShoppingItem.setProduct(shoppingCartItem.getProduct());

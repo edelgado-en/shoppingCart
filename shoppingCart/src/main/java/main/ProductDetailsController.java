@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
  */
 public class ProductDetailsController extends AbstractController implements Initializable {
 
+    /**
+     * Target FXML file.
+     */
     private static final String TARGET_FXML = "productDetails.fxml";
 
     /**
