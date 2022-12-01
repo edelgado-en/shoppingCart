@@ -49,5 +49,117 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>4</int>
+    </void>
+    <void property="name">
+     <string>Product 4</string>
+    </void>
+    <void property="price">
+     <double>9.99</double>
+    </void>
+    <void property="quantity">
+     <int>30</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>5</int>
+    </void>
+    <void property="name">
+     <string>Product 5</string>
+    </void>
+    <void property="price">
+     <double>4.99</double>
+    </void>
+    <void property="quantity">
+     <int>30</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>6</int>
+    </void>
+    <void property="name">
+     <string>Product 6</string>
+    </void>
+    <void property="price">
+     <double>2.99</double>
+    </void>
+    <void property="quantity">
+     <int>15</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>7</int>
+    </void>
+    <void property="name">
+     <string>Product 7</string>
+    </void>
+    <void property="price">
+     <double>19.99</double>
+    </void>
+    <void property="quantity">
+     <int>22</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>8</int>
+    </void>
+    <void property="name">
+     <string>Product 8</string>
+    </void>
+    <void property="price">
+     <double>39.99</double>
+    </void>
+    <void property="quantity">
+     <int>8</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>9</int>
+    </void>
+    <void property="name">
+     <string>Product 9</string>
+    </void>
+    <void property="price">
+     <double>6.99</double>
+    </void>
+    <void property="quantity">
+     <int>9</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>10</int>
+    </void>
+    <void property="name">
+     <string>Product 10</string>
+    </void>
+    <void property="price">
+     <double>9.99</double>
+    </void>
+    <void property="quantity">
+     <int>26</int>
+    </void>
+   </object>
+  </void>
  </object>
 </java>
