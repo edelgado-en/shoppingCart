@@ -3,11 +3,9 @@ package main;
 import dao.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import services.SceneLoaderService;
 import services.UserService;
@@ -20,19 +18,38 @@ import java.io.IOException;
  * @author Enrique Delgado
  */
 public class SignupController extends AbstractController {
+    /**
+     * Target FXML file for this controller.
+     */
     private static final String TARGET_FXML = "signup.fxml";
 
     private UserService userService;
 
+    /**
+     * SignupController constructor. It receives a UserService instance.
+     * @param userService
+     */
     public SignupController(UserService userService) {
         this.userService = userService;
     }
 
+    /**
+     * username text field binding.
+     */
     @FXML
     private TextField username;
 
+    /**
+     * password text field binding.
+     */
     @FXML
     private TextField password;
+
+    /**
+     * Shows the error message when user already exists.
+     */
+    @FXML
+    private Label errorMessage;
 
     /**
      * Redirects the user to the login screen.
@@ -41,10 +58,16 @@ public class SignupController extends AbstractController {
     @FXML
     void backToLogin(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         SceneLoaderService.loadScene(stage, LoginController.build());
     }
 
+    /**
+     * Creates a new user if the username is not taken. Upon creation, the user will be redirected
+     * to the product list view.
+     *
+     * @param event the button action event
+     * @throws IOException
+     */
     @FXML
     void signUp(ActionEvent event) throws IOException {
         if (userService.loadUser(username.getText(), password.getText()) == null) {
@@ -55,9 +78,9 @@ public class SignupController extends AbstractController {
             SceneLoaderService.loadScene(stage, ProductListController.build());
         }
 
-        // show error message in the signup screen. TODO: Add a label to fxml to show error messages
-        System.out.println("User already exists");
-
+        // Show an error message if a user with the same username already exists.
+        errorMessage.setVisible(true);
+        errorMessage.setText("User already exists");
     }
 
     @Override

@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import services.ProductService;
 import services.SceneLoaderService;
 import services.UserService;
 
@@ -49,12 +48,6 @@ public class LoginController extends AbstractController{
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
-
-
-            //SceneLoaderService.loadScene(stage, MainController.build());
-
-            //SceneLoaderService.loadScene(stage, ProductListController.build());
-
         }
 
         //show error message in the login screen. TODO: Add a label to fxml to show error messages

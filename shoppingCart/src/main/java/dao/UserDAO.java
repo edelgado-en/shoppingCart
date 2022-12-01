@@ -24,6 +24,7 @@ public class UserDAO implements PersistenceService<User> {
         //add user to the list of users in users.xml using XMLEncoder
         ArrayList<User> userList = new ArrayList<>();
         User loadedUser = null;
+
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(FILE_NAME)));
             userList = (ArrayList<User>) decoder.readObject();
@@ -59,8 +60,6 @@ public class UserDAO implements PersistenceService<User> {
 
     @Override
     public User load(User user) {
-        // read user from users.xml using XMLDecoder
-        // return the user object
         ArrayList<User> userList = new ArrayList<>();
         User loadedUser = null;
         try {
@@ -69,7 +68,7 @@ public class UserDAO implements PersistenceService<User> {
             decoder.close();
 
             for (User u : userList) {
-                if (u.getUsername().equals(user.getUsername())) {
+                if (u.getUsername().equals(user.getUsername()) && u.getPassword().equals(user.getPassword())) {
                     loadedUser = u;
                 }
             }
