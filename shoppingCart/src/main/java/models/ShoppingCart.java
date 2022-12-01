@@ -24,6 +24,11 @@ public class ShoppingCart implements Serializable {
 
     }
 
+    /**
+     * Instantiates a new ShoppingCart with the provided shopping cart item list and total price.
+     * @param shoppingCartItemList
+     * @param totalPrice
+     */
     public ShoppingCart(List<ShoppingCartItem> shoppingCartItemList, double totalPrice) {
         this.shoppingCartItemList = shoppingCartItemList;
         this.totalPrice = totalPrice;
@@ -53,20 +58,36 @@ public class ShoppingCart implements Serializable {
         shoppingCartItemList.remove(shoppingCartItem);
     }
 
+    /**
+     * Removes all entries of the shopping cart item list and rest the total price to 0.
+     */
     public void clearShoppingCart() {
         shoppingCartItemList.clear();
         totalPrice = 0;
     }
 
+    /**
+     * Returns true is the shopping cart item list is empty.
+     * @return
+     */
     public boolean isEmpty() {
         return shoppingCartItemList.isEmpty();
     }
 
+    /**
+     * Returns the size of the shopping cart item list.
+     * @return
+     */
     public int size() {
         return shoppingCartItemList.size();
     }
 
-
+    /**
+     * Gets the shopping cart item from the shopping cart item list matching the provided product id.
+     * Otherwise, returns null.
+     * @param productId
+     * @return
+     */
     public ShoppingCartItem getShoppingCartItem(int productId) {
         // this lookup should be by productId
         for (ShoppingCartItem shoppingCartItem : shoppingCartItemList) {
@@ -78,10 +99,19 @@ public class ShoppingCart implements Serializable {
         return null;
     }
 
+    /**
+     * Updates the shopping cart item list with the prodived shopping car item. The lookup is done
+     * by index.
+     * @param shoppingCartItem
+     * @param index
+     */
     public void updateShoppingCartItem(ShoppingCartItem shoppingCartItem, int index) {
         shoppingCartItemList.set(index, shoppingCartItem);
     }
 
+    /**
+     * Updates the total price of the shopping cart by adding the prices of all shopping cart items.
+     */
     public void updateTotalPrice() {
         double totalPrice = 0;
         for (ShoppingCartItem shoppingCartItem : shoppingCartItemList) {

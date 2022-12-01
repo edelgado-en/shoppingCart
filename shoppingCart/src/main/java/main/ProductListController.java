@@ -124,13 +124,15 @@ public class ProductListController extends AbstractController implements Initial
      */
     @FXML
     void addToCart(ActionEvent event) throws IOException {
-        shoppingCartService.addToCart(currentProduct);
+        if (currentProduct != null && currentProduct.getName() != null) {
+            shoppingCartService.addToCart(currentProduct);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
-        Parent root = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
+            Parent root = fxmlLoader.load();
 
-        MainController mainController = fxmlLoader.getController();
-        mainController.updateCartCounter(root);
+            MainController mainController = fxmlLoader.getController();
+            mainController.updateCartCounter(root);
+        }
     }
 
     /**

@@ -132,8 +132,23 @@ public class ShoppingCartController extends AbstractController implements Initia
     }
 
     @FXML
-    void onSubtractItemQuantity(ActionEvent event) {
-        //TODO: implement this method
+    void onSubtractItemQuantity(ActionEvent event) throws IOException {
+        if (currentShoppingItem != null) {
+            shoppingCartService.removeFromCart(currentShoppingItem.getProduct());
+
+            //refresh view
+            Pane centerView = SceneLoaderService.loadPane(ShoppingCartController.build());
+            MainController.loadCenterView(centerView);
+        }
+    }
+
+    @FXML
+    void deleteShoppingCart(ActionEvent event) throws IOException {
+        shoppingCartService.deleteShoppingCart();
+
+        //refresh view
+        Pane centerView = SceneLoaderService.loadPane(ShoppingCartController.build());
+        MainController.loadCenterView(centerView);
     }
 
     /**

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane onDragDetected="#deleteShoppingCart" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="26.0" layoutY="37.0" prefHeight="17.0" prefWidth="105.0" text="Your Cart">
          <font>
@@ -25,5 +25,6 @@
       <Button layoutX="31.0" layoutY="287.0" mnemonicParsing="false" onAction="#onAddItemQuantity" text="Add " />
       <Button layoutX="86.0" layoutY="287.0" mnemonicParsing="false" onAction="#onSubtractItemQuantity" text="Subtract" />
       <Button layoutX="426.0" layoutY="287.0" mnemonicParsing="false" onAction="#backToListing" text="Back" />
+      <Button layoutX="489.0" layoutY="39.0" mnemonicParsing="false" onAction="#deleteShoppingCart" text="Delete Cart" />
    </children>
 </AnchorPane>

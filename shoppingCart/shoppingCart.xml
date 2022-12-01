@@ -5,7 +5,7 @@
    <void method="add">
     <object class="models.ShoppingCartItem">
      <void property="price">
-      <double>59.94</double>
+      <double>9.99</double>
      </void>
      <void property="product">
       <object class="models.Product">
@@ -24,39 +24,13 @@
       </object>
      </void>
      <void property="quantity">
-      <int>6</int>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="models.ShoppingCartItem">
-     <void property="price">
-      <double>9.99</double>
-     </void>
-     <void property="product">
-      <object class="models.Product">
-       <void property="id">
-        <int>2</int>
-       </void>
-       <void property="name">
-        <string>Product 2</string>
-       </void>
-       <void property="price">
-        <double>9.99</double>
-       </void>
-       <void property="quantity">
-        <int>20</int>
-       </void>
-      </object>
-     </void>
-     <void property="quantity">
       <int>1</int>
      </void>
     </object>
    </void>
   </void>
   <void property="totalPrice">
-   <double>69.93</double>
+   <double>9.99</double>
   </void>
  </object>
 </java>

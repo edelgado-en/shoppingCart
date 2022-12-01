@@ -55,7 +55,7 @@ public class ShoppingCartService {
         //update the shopping total price
         shoppingCart.setTotalPrice(shoppingCart.getTotalPrice() + product.getPrice());
 
-        //save the shopping cart to the file system
+        //save the shopping cart to the persistence layer
         shoppingCartDAO.save(shoppingCart);
 
     }
