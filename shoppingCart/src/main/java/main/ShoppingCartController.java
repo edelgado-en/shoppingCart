@@ -9,11 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import models.Product;
 import models.ShoppingCart;
 import models.ShoppingCartItem;
+import services.SceneLoaderService;
 import services.ShoppingCartService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +108,17 @@ public class ShoppingCartController extends AbstractController implements Initia
         shoppingCartItemTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             setCurrentShoppingItem(newValue);
         });
+    }
+
+    /**
+     * Redirects the user to the product list view.
+     * @param event the button action event
+     * @throws IOException
+     */
+    @FXML
+    void backToListing(ActionEvent event) throws IOException {
+        Pane centerView = SceneLoaderService.loadPane(ProductListController.build());
+        MainController.loadCenterView(centerView);
     }
 
     @FXML
