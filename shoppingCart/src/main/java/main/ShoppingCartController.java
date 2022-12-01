@@ -5,7 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -153,7 +155,16 @@ public class ShoppingCartController extends AbstractController implements Initia
     @FXML
     void onSubtractItemQuantity(ActionEvent event) throws IOException {
         if (currentShoppingItem != null) {
-            shoppingCartService.removeFromCart(currentShoppingItem.getProduct());
+            boolean productRemoved = shoppingCartService.removeFromCart(currentShoppingItem.getProduct());
+
+            if (productRemoved) {
+                //if the product is removed, decrease the cart counter in the main controller
+                FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
+                Parent root = fxmlLoader.load();
+
+                MainController mainController = fxmlLoader.getController();
+                mainController.decreaseCartCounter(root);
+            }
 
             //refresh view
             Pane centerView = SceneLoaderService.loadPane(ShoppingCartController.build());

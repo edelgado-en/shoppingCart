@@ -68,7 +68,19 @@ public class ShoppingCartService {
 
     }
 
-    public void removeFromCart(Product product) {
+    /**
+     * Decreases the quantity of the provided product in the shopping cart. If the quantity reaches 0, then
+     * the product is removed from the shopping cart. If the provided product is removed, then it returns true,
+     * otherwise it returns false.
+     *
+     * If the shopping cart does not exists, it returns an exception.
+     *
+     * @param product
+     * @return
+     */
+    public boolean removeFromCart(Product product) {
+        boolean productRemoved = false;
+
         // fetch shopping cart from shoppingCart.xml
         ShoppingCart shoppingCart = shoppingCartDAO.load(null);
 
@@ -85,6 +97,8 @@ public class ShoppingCartService {
                 if (shoppingCartItem.getQuantity() == 0) {
                     shoppingCart.removeShoppingCartItem(shoppingCartItem);
 
+                    productRemoved = true;
+
                 } else {
                     // the price has to be adjusted based on the new quantity
                     double newPrice = product.getPrice() * updatedQuantity;
@@ -98,6 +112,8 @@ public class ShoppingCartService {
 
             //save the shopping cart to the file system
             shoppingCartDAO.save(shoppingCart);
+
+            return productRemoved;
 
         } else {
             throw new RuntimeException("Shopping cart not found");

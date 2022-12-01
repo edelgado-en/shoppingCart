@@ -131,7 +131,7 @@ public class ProductListController extends AbstractController implements Initial
             Parent root = fxmlLoader.load();
 
             MainController mainController = fxmlLoader.getController();
-            mainController.updateCartCounter(root);
+            mainController.increaseCartCounter(root);
         }
     }
 

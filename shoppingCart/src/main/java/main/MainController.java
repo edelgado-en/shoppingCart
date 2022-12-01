@@ -70,12 +70,26 @@ public class MainController extends AbstractController implements Initializable 
     }
 
     /**
-     * Updates the cart counter label with the current number of items in the cart.
+     * Increases the cart counter label by 1.
      *
      * @param root
      */
-    public void updateCartCounter(Parent root) {
+    public void increaseCartCounter(Parent root) {
         cartItemsCounter++;
+        cartCounter.setText(cartItemsCounter.toString());
+
+        // this is needed to re-render the view and show the updated values
+        ShoppingCartApplication.staticStage.setScene(new Scene(root));
+        ShoppingCartApplication.staticStage.show();
+    }
+
+    /**
+     * Decreases the cart counter label by 1.
+     *
+     * @param root
+     */
+    public void decreaseCartCounter(Parent root) {
+        cartItemsCounter--;
         cartCounter.setText(cartItemsCounter.toString());
 
         // this is needed to re-render the view and show the updated values
