@@ -23,7 +23,7 @@ public class ProductService {
         this.productDAO = productDAO;
     }
 
-    public void saveProduct(Integer id, String name, double price, int quantity) {
+    public void addProduct(Integer id, String name, double price, int quantity) {
         productDAO.save(new Product(id, name, price, quantity));
     }
 
@@ -34,7 +34,6 @@ public class ProductService {
     //get product list from products.xml
     public ArrayList<Product> getProductList() {
         ArrayList<Product> productList = new ArrayList<>();
-        //TODO: this should be in the DAO layer
 
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("products.xml")));

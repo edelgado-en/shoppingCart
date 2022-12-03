@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.User;
 import services.SceneLoaderService;
 
 import java.io.IOException;
@@ -119,14 +120,32 @@ public class MainController extends AbstractController implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ProductListController productListController = ProductListController.build();
-        FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource(productListController.getTargetFxml()));
-        fxmlLoader.setController(productListController);
+        User currentUser = LoginController.loggedInUser;
 
-        cartCounter.setText(String.valueOf(cartItemsCounter));
+        FXMLLoader fxmlLoader;
+
+        //if currentUser is a seller, then load the InventoryListController, otherwise load the ProductListController
+        if (currentUser.isSeller()) {
+            InventoryListController inventoryListController = InventoryListController.build();
+            fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource(inventoryListController.getTargetFxml()));
+            fxmlLoader.setController(inventoryListController);
+
+        } else {
+            ProductListController productListController = ProductListController.build();
+            fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource(productListController.getTargetFxml()));
+            fxmlLoader.setController(productListController);
+
+            cartCounter.setText(String.valueOf(cartItemsCounter));
+        }
 
         try {
             Pane centerView = fxmlLoader.load();
+
+            // hide the cart button if the user is a seller
+            if (currentUser.isSeller()) {
+                cartButton.setVisible(false);
+                cartCounter.setVisible(false);
+            }
 
             staticMainPane = mainPane;
             staticMainPane.setCenter(centerView);

@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.User;
 import services.SceneLoaderService;
 import services.UserService;
 
@@ -27,6 +28,12 @@ public class LoginController extends AbstractController{
     private Stage stage;
 
     private UserService userService;
+
+    /**
+     * Current loggedInUser. it is static because it does not change based on the instance of the controller.
+     * We can access the current user from any controller.
+     */
+    public static User loggedInUser;
 
     /**
      * password text field binding.
@@ -64,7 +71,11 @@ public class LoginController extends AbstractController{
     @FXML
     void signin(ActionEvent event) throws IOException {
         //check if user exists
-        if (userService.loadUser(username.getText(), password.getText()) != null) {
+        User user = userService.loadUser(username.getText(), password.getText());
+
+        if (user != null) {
+            loggedInUser = user;
+
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             FXMLLoader fxmlLoader = new FXMLLoader(ShoppingCartApplication.class.getResource("main.fxml"));
@@ -72,6 +83,9 @@ public class LoginController extends AbstractController{
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
+
+        } else {
+            loggedInUser = null;
         }
 
         // Show an error message if a user with the user provides wrong credentials.

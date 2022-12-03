@@ -38,7 +38,7 @@ public class UserDAO implements PersistenceService<User> {
         //write the new list of users to the file
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream("users.xml");
+            out = new FileOutputStream(FILE_NAME);
             XMLEncoder encoder = new XMLEncoder(out);
             encoder.writeObject(userList);
             encoder.close();
