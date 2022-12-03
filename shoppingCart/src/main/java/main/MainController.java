@@ -4,12 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import services.SceneLoaderService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,6 +73,17 @@ public class MainController extends AbstractController implements Initializable 
     }
 
     /**
+     * Redirects the user to the login screen.
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SceneLoaderService.loadScene(stage, LoginController.build());
+    }
+
+     /**
      * Increases the cart counter label by 1.
      *
      * @param root

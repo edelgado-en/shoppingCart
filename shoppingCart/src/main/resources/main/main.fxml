@@ -40,14 +40,19 @@
                         </Label>
                         <Button fx:id="cartButton" mnemonicParsing="false" onAction="#onViewCart" text="Cart" GridPane.columnIndex="1">
                            <GridPane.margin>
-                              <Insets left="190.0" />
+                              <Insets left="130.0" />
                            </GridPane.margin>
                         </Button>
                         <Label fx:id="cartCounter" text="0" textFill="WHITE" GridPane.columnIndex="1">
                            <GridPane.margin>
-                              <Insets left="240.0" />
+                              <Insets left="180.0" />
                            </GridPane.margin>
                         </Label>
+                        <Button mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="63.0" text="logout" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="225.0" />
+                           </GridPane.margin>
+                        </Button>
                      </children>
                      <opaqueInsets>
                         <Insets />
