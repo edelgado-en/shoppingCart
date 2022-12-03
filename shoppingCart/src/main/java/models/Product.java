@@ -20,6 +20,9 @@ public class Product implements Serializable {
     private DoubleProperty price = new SimpleDoubleProperty();
     private IntegerProperty quantity = new SimpleIntegerProperty();
 
+    /**
+     * Product constructor. Empty constructor is needed for serialization.
+     */
     public Product() {
 
     }

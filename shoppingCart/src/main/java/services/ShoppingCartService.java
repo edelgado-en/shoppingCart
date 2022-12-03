@@ -120,6 +120,9 @@ public class ShoppingCartService {
         }
     }
 
+    /**
+     * Deletes the shopping cart from the persistence layer.
+     */
     public void deleteShoppingCart() {
         // fetch shopping cart from shoppingCart.xml
         ShoppingCart shoppingCart = shoppingCartDAO.load(null);
@@ -133,6 +136,10 @@ public class ShoppingCartService {
         }
     }
 
+    /**
+     * Returns the shopping cart from the persistence layer.
+     * @return
+     */
     public ShoppingCart getShoppingCart() {
         return shoppingCartDAO.load(null);
     }

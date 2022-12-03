@@ -20,10 +20,18 @@ public class ShoppingCartItem implements Serializable {
      */
     private double price;
 
+    /**
+     * Instantiates a new ShoppingCartItem. Empty constructor is needed for serialization.
+     */
     public ShoppingCartItem() {
-
     }
 
+    /**
+     * Instantiates a new ShoppingCartItem with the provided product, quantity, and price.
+     * @param product
+     * @param quantity
+     * @param price
+     */
     public ShoppingCartItem(Product product, int quantity, double price) {
         this.product = product;
         this.quantity = quantity;

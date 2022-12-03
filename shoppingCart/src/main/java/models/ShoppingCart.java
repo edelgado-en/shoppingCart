@@ -20,8 +20,10 @@ public class ShoppingCart implements Serializable {
      */
     private double totalPrice;
 
+    /**
+     * Instantiates a new ShoppingCart. Empty constructor is needed for serialization.
+     */
     public ShoppingCart() {
-
     }
 
     /**
