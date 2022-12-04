@@ -80,7 +80,7 @@ public class Product implements Serializable {
 
         Product product = (Product) obj;
 
-        return name.equals(product.getName()) && price.equals(product.getPrice()) && quantity.equals(product.getQuantity());
+        return name.get().equals(product.getName());
     }
 
     @Override
