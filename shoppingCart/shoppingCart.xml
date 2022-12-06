@@ -5,32 +5,32 @@
    <void method="add">
     <object class="models.ShoppingCartItem">
      <void property="price">
-      <double>49.95</double>
+      <double>9.99</double>
      </void>
      <void property="product">
       <object class="models.Product">
        <void property="id">
-        <int>1</int>
+        <int>3</int>
        </void>
        <void property="name">
-        <string>Product 1</string>
+        <string>Product 3</string>
        </void>
        <void property="price">
         <double>9.99</double>
        </void>
        <void property="quantity">
-        <int>10</int>
+        <int>30</int>
        </void>
       </object>
      </void>
      <void property="quantity">
-      <int>5</int>
+      <int>1</int>
      </void>
     </object>
    </void>
   </void>
   <void property="totalPrice">
-   <double>49.95</double>
+   <double>9.99</double>
   </void>
  </object>
 </java>

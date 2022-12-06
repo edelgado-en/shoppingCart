@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"com.cop4331.shoppingcart"}]

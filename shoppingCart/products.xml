@@ -177,5 +177,21 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="models.Product">
+    <void property="id">
+     <int>12</int>
+    </void>
+    <void property="name">
+     <string>Product 12</string>
+    </void>
+    <void property="price">
+     <double>12.99</double>
+    </void>
+    <void property="quantity">
+     <int>12</int>
+    </void>
+   </object>
+  </void>
  </object>
 </java>
